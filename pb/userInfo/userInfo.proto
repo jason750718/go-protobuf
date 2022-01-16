@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = ".;userInfo";
+
+//定義Service名稱，
+service UserInfo {
+  //定義api名稱，傳入參數與回傳值
+  rpc GetUserInfo (UserInfoReq) returns (UserInfoRes) {}
+}
+
+
+
+//傳入參數的spec
+message UserInfoReq {
+  string userId = 1;
+}
+
+//回傳值的spec
+message UserInfoRes {
+  string name = 1;
+  Gender gender = 2;
+  repeated string habbits = 3;
+
+  enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+  }
+}
