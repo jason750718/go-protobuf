@@ -27,14 +27,14 @@ type pbAddressServer struct {
 func main() {
 	listen, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatal("failed to listen: %v", err)
+		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
 	pb.RegisterUserInfoServer(s, &pbUserInfoserver{})
 	pb_address.RegisterAddressInfoServer(s, &pbAddressServer{})
 	log.Printf("server listening at: %v", listen.Addr())
 	if err := s.Serve(listen); err != nil {
-		log.Fatal("failed to serve: %v", err)
+		log.Fatalf("failed to serve: %v", err)
 	}
 
 }
